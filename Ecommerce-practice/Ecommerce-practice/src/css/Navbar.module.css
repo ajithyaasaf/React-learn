@@ -1,0 +1,43 @@
+.h1 {
+    color: black;
+}
+
+li {
+    margin: 0 18px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+li:hover {
+    color: #0f172a;
+    transform: translateY(-1px);
+}
+
+.logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+.mainbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 50px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    font-family: system-ui, -apple-system, sans-serif;
+}

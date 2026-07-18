@@ -1,0 +1,11 @@
+props
+props destructuring
+props deafult
+props types 
+one way flow parent to chidld sibling sharing also not possible
+
+conditionla render 
+if()
+props &&
+filter
+sort
