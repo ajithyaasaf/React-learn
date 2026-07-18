@@ -3,7 +3,10 @@ import mens from "../assets/products/men.png"
 
 function Categories(props) {
 
-
+    const filteredData = props.prod.filter((val) => {
+        return val.isStock == true
+    })
+    console.log(filteredData)
     return (
         props.available && <div style={{ display: "flex" }}>
             {props.prod.map((val) => {
@@ -22,8 +25,5 @@ function Categories(props) {
             })}
         </div>
     )
-
 }
-
-
 export default Categories
