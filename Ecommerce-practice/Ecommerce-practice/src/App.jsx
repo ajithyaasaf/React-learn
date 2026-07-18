@@ -15,7 +15,7 @@ function App() {
 
       <Navbar />
       <Hero />
-      <Categories prod={products} />
+      <Categories prod={products} available={true} />
     </>
   )
 }
