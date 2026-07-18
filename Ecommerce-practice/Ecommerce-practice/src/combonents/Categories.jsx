@@ -3,8 +3,9 @@ import mens from "../assets/products/men.png"
 
 function Categories(props) {
 
+
     return (
-        <div style={{ display: "flex" }}>
+        props.available && <div style={{ display: "flex" }}>
             {props.prod.map((val) => {
                 return (
 
@@ -21,6 +22,8 @@ function Categories(props) {
             })}
         </div>
     )
+
 }
+
 
 export default Categories
