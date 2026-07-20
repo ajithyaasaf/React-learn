@@ -4,12 +4,12 @@ import mens from "../assets/products/men.png"
 function Categories(props) {
 
     const filteredData = props.prod.filter((val) => {
-        return val.isStock == true
+        return val.inStock == true
     })
     console.log(filteredData)
     return (
         props.available && <div style={{ display: "flex" }}>
-            {props.prod.map((val) => {
+            {filteredData.map((val) => {
                 return (
 
                     <div className="card" >

@@ -19,7 +19,7 @@ export const products = [
         rating: "4.3",
         category: "Footwear",
         discount: "15%",
-        inStock: false
+        inStock: true
     },
     {
         id: 3,
