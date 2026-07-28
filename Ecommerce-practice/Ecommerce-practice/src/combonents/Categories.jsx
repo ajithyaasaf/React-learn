@@ -6,13 +6,13 @@ import styles from "../css/Categories.module.css"
 function Categories(props) {
 
     let [initial, setToggle] = useState(false)
+    const [search, setSeach] = useState("")
 
     const filteredData = props.prod.filter((val) => {
-        return val.inStock == true
+        return val.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     })
 
     // for search bar
-    const [search, setSeach] = useState("")
 
     return (
         props.available && (
@@ -30,10 +30,10 @@ function Categories(props) {
                 </div>
                 <p>this is your typed value : {search}</p>
                 <div style={{ display: "flex" }}>
-                    {initial ? filteredData.reduce().map((val) => {
+                    {!initial ? (filteredData.length === 0 ? <p>No products found</p> : filteredData.map((val) => {
                         return (
 
-                            <div className="card" >
+                            <div className="card" key={val.id} >
                                 <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
                                     <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
                                     <h1>{val.name}</h1>
@@ -43,10 +43,10 @@ function Categories(props) {
                             </div>
 
                         )
-                    }) : props.prod.map((val) => {
+                    })) : props.prod.map((val) => {
                         return (
 
-                            <div className="card" >
+                            <div className="card" key={val.id} >
                                 <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
                                     <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
                                     <h1>{val.name}</h1>
