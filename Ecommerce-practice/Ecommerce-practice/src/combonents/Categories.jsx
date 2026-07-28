@@ -1,29 +1,65 @@
+import { useState } from "react"
 import mens from "../assets/products/men.png"
+import styles from "../css/Categories.module.css"
 
 
 function Categories(props) {
 
+    let [initial, setToggle] = useState(false)
+
     const filteredData = props.prod.filter((val) => {
         return val.inStock == true
     })
-    console.log(filteredData)
+
+    // for search bar
+    const [search, setSeach] = useState("")
+
     return (
-        props.available && <div style={{ display: "flex" }}>
-            {filteredData.map((val) => {
-                return (
+        props.available && (
+            <>
+                <div
+                    className={`${styles.switch} ${initial ? styles.on : styles.off}`}
+                    onClick={() => setToggle(!initial)}
+                >
+                    <span className={`${styles.slider} ${initial ? styles.sliderOn : styles.sliderOff}`}></span>
+                </div>
+                {/* serach bar implementation */}
+                <div>
+                    <input type="search" name="search bar" placeholder="search products" style={{ marginLeft: "15px", borderRadius: "5px" }}
+                        onChange={(e) => { setSeach(e.target.value) }} />
+                </div>
+                <p>this is your typed value : {search}</p>
+                <div style={{ display: "flex" }}>
+                    {initial ? filteredData.reduce().map((val) => {
+                        return (
 
-                    <div className="card" >
-                        <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
-                            <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
-                            <h1>{val.name}</h1>
-                            <p>this is 100% cottton</p>
-                            <button>shop now</button>
-                        </div>
-                    </div>
+                            <div className="card" >
+                                <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
+                                    <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
+                                    <h1>{val.name}</h1>
+                                    <p>this is 100% cottton</p>
+                                    <button>shop now</button>
+                                </div>
+                            </div>
 
-                )
-            })}
-        </div>
+                        )
+                    }) : props.prod.map((val) => {
+                        return (
+
+                            <div className="card" >
+                                <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
+                                    <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
+                                    <h1>{val.name}</h1>
+                                    <p>this is 100% cottton</p>
+                                    <button>shop now</button>
+                                </div>
+                            </div>
+
+                        )
+                    })}
+                </div>
+            </>
+        )
     )
 }
 export default Categories
