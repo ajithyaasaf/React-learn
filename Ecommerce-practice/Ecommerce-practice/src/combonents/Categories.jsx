@@ -7,9 +7,12 @@ function Categories(props) {
 
     let [initial, setToggle] = useState(false)
     const [search, setSeach] = useState("")
+    let [category, setCategory] = useState("All")
 
     const filteredData = props.prod.filter((val) => {
-        return val.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+        const matchesSearch = val.name.toLowerCase().includes(search.toLowerCase());
+        const matchesCategory = category === "All" || val.category?.toLowerCase() === category.toLowerCase();
+        return matchesSearch && matchesCategory;
     })
 
     // for search bar
@@ -23,6 +26,14 @@ function Categories(props) {
                 >
                     <span className={`${styles.slider} ${initial ? styles.sliderOn : styles.sliderOff}`}></span>
                 </div>
+                {/* categories button */}
+                <div style={{ margin: "10px 0" }}>
+                    <label htmlFor="">Categories: </label>
+                    <button onClick={() => setCategory("All")}>All</button>
+                    <button onClick={() => setCategory("Electronics")}>Electronics</button>
+                    <button onClick={() => setCategory("Footwear")}>Footwear</button>
+                </div>
+
                 {/* serach bar implementation */}
                 <div>
                     <input type="search" name="search bar" placeholder="search products" style={{ marginLeft: "15px", borderRadius: "5px" }}
