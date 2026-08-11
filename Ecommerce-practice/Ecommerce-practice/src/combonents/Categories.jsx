@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import mens from "../assets/products/men.png"
 import styles from "../css/Categories.module.css"
 import { Link } from "react-router-dom"
@@ -11,11 +11,19 @@ function Categories(props) {
     let [category, setCategory] = useState("All")
     // drop filter
     let [dropFilter, setDropFilter] = useState("default")
+    // get products
+    let [products, setProducts] = useState([])
+
+    useEffect(() => {
+        fetch("https://dummyjson.com/products")
+            .then((res) => res.json())
+            .then((data) => setProducts(data.products))
+    }, [])
 
     // Filter products by inStock toggle, search text, and category selection
-    let filteredData = props.prod.filter((val) => {
+    let filteredData = products.filter((val) => {
         const matchesStock = initial ? val.inStock === true : true;
-        const matchesSearch = val.name.toLowerCase().includes(search.toLowerCase());
+        const matchesSearch = val.title.toLowerCase().includes(search.toLowerCase());
         const matchesCategory = category == "All" || val.category.toLowerCase() === category.toLowerCase();
 
         return matchesStock && matchesSearch && matchesCategory;
@@ -84,19 +92,19 @@ function Categories(props) {
                 </select>
                 {/* dropdown filter */}
 
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {sortedData.length > 0 ? (
                         sortedData.map((val) => {
                             return (
                                 <div className="card" key={val.id}>
                                     <div style={{ backgroundColor: "beige", maxHeight: "600px", maxWidth: "300px", margin: "8px", textAlign: "center" }}>
-                                        <img src={mens} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
+                                        <img src={val.thumbnail} alt="" style={{ maxHeight: "200px", maxWidth: "200px" }} />
                                         <h1>{val.name}</h1>
                                         <p>price: {val.price}</p>
-                                        <p>this is 100% cottton</p>
+                                        <p>{val.description}</p>
                                         <button>shop now</button>
                                     </div>
-                                    <Link to={`/products/${val.id}`}>products details</Link>
+                                    <button style={{ cursor: "pointer" }}><Link style={{ textDecoration: "none", color: "black" }} to={`/products/${val.id}`}>products details</Link></button>
                                 </div>
                             )
                         })
