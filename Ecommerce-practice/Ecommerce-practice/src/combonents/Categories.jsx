@@ -1,6 +1,7 @@
 import { useState } from "react"
 import mens from "../assets/products/men.png"
 import styles from "../css/Categories.module.css"
+import { Link } from "react-router-dom"
 
 function Categories(props) {
     let [initial, setToggle] = useState(false)
@@ -95,13 +96,14 @@ function Categories(props) {
                                         <p>this is 100% cottton</p>
                                         <button>shop now</button>
                                     </div>
+                                    <Link to={`/products/${val.id}`}>products details</Link>
                                 </div>
                             )
                         })
                     ) : (
                         <p>No products available</p>
                     )}
-                </div>
+                </div >
             </>
         )
     )
