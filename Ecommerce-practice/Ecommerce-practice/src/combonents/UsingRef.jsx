@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const UsingRef = () => {
     const countRef = useRef(0);
+    const inputRef = useRef();
     // console.log(countRef);
     const [value, setValue] = useState(0)
 
@@ -12,6 +13,7 @@ const UsingRef = () => {
 
     useEffect(() => {
         console.log("useRef Component Rendered");
+        inputRef.current.focus()
     });
 
     return (
@@ -26,7 +28,8 @@ const UsingRef = () => {
             </button>
             <button onClick={() => { setValue(0); countRef.current = 0; }}>
                 reset
-            </button>
+            </button><br />
+            <input type="text" ref={inputRef} />
         </div>
     );
 };
