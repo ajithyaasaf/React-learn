@@ -105,6 +105,7 @@ function Categories(props) {
                                         <button>shop now</button>
                                     </div>
                                     <button style={{ cursor: "pointer" }}><Link style={{ textDecoration: "none", color: "black" }} to={`/products/${val.id}`}>products details</Link></button>
+                                    <button>Add to cart</button>
                                 </div>
                             )
                         })
