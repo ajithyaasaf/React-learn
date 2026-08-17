@@ -12,7 +12,7 @@ const UsingRef = () => {
     };
 
     useEffect(() => {
-        console.log("useRef Component Rendered");
+
         inputRef.current.focus()
     });
 

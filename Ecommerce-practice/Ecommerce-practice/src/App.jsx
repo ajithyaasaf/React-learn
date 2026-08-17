@@ -11,14 +11,19 @@ import UsingReducer from "./combonents/UsingReducer.jsx"
 import { products } from './data/products.js'
 function App() {
 
-  let [cart, setCart] = useState()
+  let [cart, setCart] = useState([])
+
+  console.log(cart)
+
+
+
   return (
     <>
       <UsingReducer />
       <UsingRef />
       <Navbar />
       <Hero />
-      <Categories prod={products} available={true} cart={cart} setcart={setCart} />
+      <Categories prod={products} available={true} cart={cart} setCart={setCart} />
     </>
   )
 }
