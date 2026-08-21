@@ -9,6 +9,7 @@ import Categories from "./combonents/Categories.jsx"
 import UsingRef from "./combonents/UsingRef.jsx"
 import UsingReducer from "./combonents/UsingReducer.jsx"
 import { products } from './data/products.js'
+import { Outlet } from 'react-router-dom'
 function App() {
 
   let [cart, setCart] = useState([])
@@ -24,6 +25,7 @@ function App() {
       <Navbar />
       <Hero />
       <Categories prod={products} available={true} cart={cart} setCart={setCart} />
+      <Outlet context={{ cart, setCart }} />
     </>
   )
 }

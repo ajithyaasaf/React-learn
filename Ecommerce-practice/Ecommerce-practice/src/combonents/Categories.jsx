@@ -105,7 +105,19 @@ function Categories(props) {
                                         <button>shop now</button>
                                     </div>
                                     <button style={{ cursor: "pointer" }}><Link style={{ textDecoration: "none", color: "black" }} to={`/products/${val.id}`}>products details</Link></button>
-                                    <button onClick={() => { props.setCart((prevCart) => [...prevCart, val.id]) }}>Add to cart</button>
+                                    <button onClick={() => {
+                                        props.setCart((prevCart) => {
+                                            const fin = prevCart.find((data) => data.id == val.id)
+                                            if (fin)
+                                                return
+                                            else
+                                                return [...prevCart, val]
+
+                                        }
+                                        )
+
+
+                                    }}>Add to cart</button>
                                 </div>
                             )
                         })

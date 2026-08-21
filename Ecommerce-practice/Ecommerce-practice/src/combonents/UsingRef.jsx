@@ -14,7 +14,7 @@ const UsingRef = () => {
     useEffect(() => {
 
         inputRef.current.focus()
-    });
+    }, []);
 
     return (
         <div style={{ padding: "20px", margin: "20px 0", border: "1px dashed #888" }}>
