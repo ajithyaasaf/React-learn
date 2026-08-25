@@ -34,7 +34,7 @@ export default function Cart() {
                                 />
                                 <h4 style={{ margin: "5px 0", fontSize: "16px" }}>{data.title}</h4>
                                 <p style={{ margin: "5px 0", fontWeight: "bold", color: "#2e7d32" }}>${data.price}
-                                    <p>Qty:{() => { }}</p>
+                                    <p>Qty:{data.quantity}</p>
                                 </p>
                             </div>
                         )

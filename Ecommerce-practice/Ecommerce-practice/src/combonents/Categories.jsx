@@ -109,15 +109,15 @@ function Categories(props) {
                                         props.setCart((prevCart) => {
                                             const fin = prevCart.find((data) => data.id == val.id)
                                             if (fin)
-                                                return fin.map((data) => {
+                                                return prevCart.map((data) => {
                                                     if (data.id === val.id) {
-                                                        return
+                                                        return { ...data, quantity: (data.quantity || 1) + 1 }
                                                     }
 
-
+                                                    return data
                                                 })
                                             else
-                                                return [...prevCart, val]
+                                                return [...prevCart, { ...val, quantity: 1 }]
 
                                         }
                                         )
