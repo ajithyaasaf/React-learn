@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -10,6 +10,9 @@ import UsingRef from "./combonents/UsingRef.jsx"
 import UsingReducer from "./combonents/UsingReducer.jsx"
 import { products } from './data/products.js'
 import { Outlet } from 'react-router-dom'
+
+export const cartContext = createContext()
+
 function App() {
 
   let [cart, setCart] = useState([])
@@ -19,14 +22,14 @@ function App() {
 
 
   return (
-    <>
+    <cartContext.Provider value={{ cart, setCart }}>
       <UsingReducer />
       <UsingRef />
       <Navbar />
       <Hero />
-      <Categories prod={products} available={true} cart={cart} setCart={setCart} />
-      <Outlet context={{ cart, setCart }} />
-    </>
+      <Categories prod={products} available={true} />
+      <Outlet />
+    </cartContext.Provider>
   )
 }
 

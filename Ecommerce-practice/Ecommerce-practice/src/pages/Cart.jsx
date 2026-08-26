@@ -1,8 +1,11 @@
-import { useOutletContext } from "react-router-dom"
+import { useContext } from "react"
+
+import { cartContext } from "../App"
 
 
 export default function Cart() {
-    const { cart, setCart } = useOutletContext()
+    const { cart, setCart } = useContext(cartContext)
+
     function handleDecrease(id) {
         setCart((prevCart) => {
             return prevCart.map((data) => {

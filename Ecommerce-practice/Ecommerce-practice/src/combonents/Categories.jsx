@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import mens from "../assets/products/men.png"
 import styles from "../css/Categories.module.css"
 import { Link } from "react-router-dom"
+import { cartContext } from "../App"
+
+
 
 function Categories(props) {
     let [initial, setToggle] = useState(false)
@@ -13,6 +16,10 @@ function Categories(props) {
     let [dropFilter, setDropFilter] = useState("default")
     // get products
     let [products, setProducts] = useState([])
+
+    // use context
+    const { cart, setCart } = useContext(cartContext)
+
 
     useEffect(() => {
         fetch("https://dummyjson.com/products")
@@ -106,7 +113,7 @@ function Categories(props) {
                                     </div>
                                     <button style={{ cursor: "pointer" }}><Link style={{ textDecoration: "none", color: "black" }} to={`/products/${val.id}`}>products details</Link></button>
                                     <button onClick={() => {
-                                        props.setCart((prevCart) => {
+                                        setCart((prevCart) => {
                                             const fin = prevCart.find((data) => data.id == val.id)
                                             if (fin)
                                                 return prevCart.map((data) => {
