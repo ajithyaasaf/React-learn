@@ -3,6 +3,8 @@ import mens from "../assets/products/men.png"
 import styles from "../css/Categories.module.css"
 import { Link } from "react-router-dom"
 import { cartContext } from "../App"
+import useFetch from "../hooks/usefetch"
+
 
 
 
@@ -19,13 +21,16 @@ function Categories(props) {
 
     // use context
     const { cart, setCart } = useContext(cartContext)
+    // custom hook for fetch
+    const { data, loading, error } = useFetch()
+    products = data
 
 
-    useEffect(() => {
-        fetch("https://dummyjson.com/products")
-            .then((res) => res.json())
-            .then((data) => setProducts(data.products))
-    }, [])
+    /*     useEffect(() => {
+            fetch("https://dummyjson.com/products")
+                .then((res) => res.json())
+                .then((data) => setProducts(data.products))
+        }, []) */
 
     // Filter products by inStock toggle, search text, and category selection
     let filteredData = products.filter((val) => {
