@@ -22,7 +22,7 @@ function Categories(props) {
     // use context
     const { cart, setCart } = useContext(cartContext)
     // custom hook for fetch
-    const { data, loading, error } = useFetch()
+    const { data, loading, error } = useFetch("https://dummyjson.com/products")
     products = data
 
 
