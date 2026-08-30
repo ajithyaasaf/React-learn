@@ -16,21 +16,13 @@ function Categories(props) {
     let [category, setCategory] = useState("All")
     // drop filter
     let [dropFilter, setDropFilter] = useState("default")
-    // get products
-    let [products, setProducts] = useState([])
-
     // use context
     const { cart, setCart } = useContext(cartContext)
     // custom hook for fetch
-    const { data, loading, error } = useFetch("https://dummyjson.com/products")
-    products = data
+    const { data: products = [], loading, error } = useFetch("https://dummyjson.com/products")
 
-
-    /*     useEffect(() => {
-            fetch("https://dummyjson.com/products")
-                .then((res) => res.json())
-                .then((data) => setProducts(data.products))
-        }, []) */
+    if (loading) return <h2 style={{ textAlign: "center", padding: "20px" }}>⏳ Loading products...</h2>;
+    if (error) return <h2 style={{ color: "red", textAlign: "center", padding: "20px" }}>⚠️ {error}</h2>;
 
     // Filter products by inStock toggle, search text, and category selection
     let filteredData = products.filter((val) => {
