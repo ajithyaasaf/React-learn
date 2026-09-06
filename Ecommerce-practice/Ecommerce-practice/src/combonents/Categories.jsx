@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import mens from "../assets/products/men.png"
 import styles from "../css/Categories.module.css"
 import { Link } from "react-router-dom"
@@ -20,6 +20,8 @@ function Categories(props) {
     const { cart, setCart } = useContext(cartContext)
     // custom hook for fetch
     const { data: products = [], loading, error } = useFetch("https://dummyjson.com/products")
+    // useref
+    const searchref = useRef()
 
     if (loading) return <h2 style={{ textAlign: "center", padding: "20px" }}>⏳ Loading products...</h2>;
     if (error) return <h2 style={{ color: "red", textAlign: "center", padding: "20px" }}>⚠️ {error}</h2>;
@@ -68,8 +70,10 @@ function Categories(props) {
                 <input
                     type="search"
                     placeholder="search products"
+                    ref={searchref}
                     onChange={(e) => { setSearch(e.target.value) }}
                 />
+                <button onClick={() => { searchref.current.focus() }}>Search Products</button>
                 {/* search bar */}
 
                 {/* category buttons */}
