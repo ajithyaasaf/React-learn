@@ -2,14 +2,33 @@ import { useEffect, useState } from "react";
 import employees from "../data/employee";
 
 function Table() {
-  const [employe, setEmployee] = useState();
+  const [employe, setEmployee] = useState([]);
   useEffect(() => {
     setEmployee(employees);
   }, []);
 
-  function handleDelete(id) {}
+
+  // below s the one version i tried to do delte it works but tried direct appeoach inside the button itself 
+  /*   function handleDelete(id) {
+      console.log(id)
+      let filteredemployees =
+        employe.filter((data) => {
+          return data.id !== id
+        })
+      setEmployee(filteredemployees)
+    } */
   return (
     <div style={{ color: "black" }}>
+      <form action="" className="form">
+        <label htmlFor="">name</label>
+        <input type="text" />
+        <label htmlFor="">role</label>
+        <input type="text" />
+        <label htmlFor="">number</label>
+        <input type="number" />
+        <label htmlFor="">age</label>
+        <input type="number" />
+      </form>
       <table>
         <thead>
           <tr>
@@ -21,7 +40,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {employees.map((data) => {
+          {employe.map((data) => {
             return (
               <tr key={data.id || data.name}>
                 <td>{data.name}</td>
@@ -30,7 +49,12 @@ function Table() {
                 <td>{data.age}</td>
                 <td>
                   <button>edit</button>
-                  <button onClick={() => handleDelete(data.id)}>Delete</button>
+                  <button onClick={() => {
+
+                    setEmployee(employe.filter((e) => {
+                      return e.id !== data.id
+                    }))
+                  }}>Delete</button>
                 </td>
               </tr>
             );

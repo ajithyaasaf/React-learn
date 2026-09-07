@@ -25,3 +25,15 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
   background-color: #f1f5f9;
 }
+
+
+.form {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 10%;
+}
