@@ -3,6 +3,25 @@ import employees from "../data/employee";
 
 function Table() {
   const [employe, setEmployee] = useState([]);
+  const [user, setUser] = useState(
+    {
+      name: "",
+      role: "",
+      number: "",
+      age: ""
+    }
+  )
+
+
+  function createUser(e) {
+    setUser(user.name = e.target.value)
+    console.log(user)
+  }
+  function creatUser(e) {
+
+    console.log(e.target.value)
+  }
+
   useEffect(() => {
     setEmployee(employees);
   }, []);
@@ -21,13 +40,14 @@ function Table() {
     <div style={{ color: "black" }}>
       <form action="" className="form">
         <label htmlFor="">name</label>
-        <input type="text" />
+        <input type="text" onChange={(e) => createUser(e)} />
         <label htmlFor="">role</label>
-        <input type="text" />
+        <input type="text" onChange={(e) => createUser(e)} />
         <label htmlFor="">number</label>
-        <input type="number" />
+        <input type="number" onChange={(e) => createUser(e)} />
         <label htmlFor="">age</label>
-        <input type="number" />
+        <input type="number" onChange={(e) => createUser(e)} />
+        <button onClick={() => creatUser}>submit</button>
       </form>
       <table>
         <thead>
