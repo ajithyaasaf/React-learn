@@ -3,31 +3,26 @@ import employees from "../data/employee";
 
 function Table() {
   const [employe, setEmployee] = useState([]);
-  const [user, setUser] = useState(
-    {
-      name: "",
-      role: "",
-      number: "",
-      age: ""
-    }
-  )
-
+  const [user, setUser] = useState({
+    name: "",
+    role: "",
+    number: "",
+    age: "",
+  });
 
   function createUser(e) {
-    setUser(user.name = e.target.value)
-    console.log(user)
+    setUser((...e,user.name = e));
   }
   function creatUser(e) {
-
-    console.log(e.target.value)
+    e.preventDefault();
+    console.log(user);
   }
 
   useEffect(() => {
     setEmployee(employees);
   }, []);
 
-
-  // below s the one version i tried to do delte it works but tried direct appeoach inside the button itself 
+  // below s the one version i tried to do delte it works but tried direct appeoach inside the button itself
   /*   function handleDelete(id) {
       console.log(id)
       let filteredemployees =
@@ -40,14 +35,14 @@ function Table() {
     <div style={{ color: "black" }}>
       <form action="" className="form">
         <label htmlFor="">name</label>
-        <input type="text" onChange={(e) => createUser(e)} />
+        <input type="text" onChange={(e) => createUser(e.target.value)} />
         <label htmlFor="">role</label>
         <input type="text" onChange={(e) => createUser(e)} />
         <label htmlFor="">number</label>
         <input type="number" onChange={(e) => createUser(e)} />
         <label htmlFor="">age</label>
         <input type="number" onChange={(e) => createUser(e)} />
-        <button onClick={() => creatUser}>submit</button>
+        <button onClick={(e) => creatUser(e)}>submit</button>
       </form>
       <table>
         <thead>
@@ -69,12 +64,17 @@ function Table() {
                 <td>{data.age}</td>
                 <td>
                   <button>edit</button>
-                  <button onClick={() => {
-
-                    setEmployee(employe.filter((e) => {
-                      return e.id !== data.id
-                    }))
-                  }}>Delete</button>
+                  <button
+                    onClick={() => {
+                      setEmployee(
+                        employe.filter((e) => {
+                          return e.id !== data.id;
+                        }),
+                      );
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );
