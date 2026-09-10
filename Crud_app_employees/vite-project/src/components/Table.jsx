@@ -9,13 +9,13 @@ function Table() {
     number: "",
     age: "",
   });
-
   function createUser(e) {
-    setUser((...e,user.name = e));
+    setUser({ ...user, [e.target.name]: e.target.value });
   }
+
   function creatUser(e) {
     e.preventDefault();
-    console.log(user);
+    setEmployee([...employe, user]);
   }
 
   useEffect(() => {
@@ -35,13 +35,13 @@ function Table() {
     <div style={{ color: "black" }}>
       <form action="" className="form">
         <label htmlFor="">name</label>
-        <input type="text" onChange={(e) => createUser(e.target.value)} />
+        <input type="text" name="name" onChange={(e) => createUser(e)} />
         <label htmlFor="">role</label>
-        <input type="text" onChange={(e) => createUser(e)} />
+        <input type="text" name="role" onChange={(e) => createUser(e)} />
         <label htmlFor="">number</label>
-        <input type="number" onChange={(e) => createUser(e)} />
+        <input type="number" name="number" onChange={(e) => createUser(e)} />
         <label htmlFor="">age</label>
-        <input type="number" onChange={(e) => createUser(e)} />
+        <input type="number" name="age" onChange={(e) => createUser(e)} />
         <button onClick={(e) => creatUser(e)}>submit</button>
       </form>
       <table>
